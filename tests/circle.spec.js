@@ -22,8 +22,37 @@ const circle = require('../src/circle');
 */
 
 describe('4 - Implemente os casos de teste para a função `circle`', () => {
-  it('Verifica se ao receber um raio, a função `circle` retorna um objeto contendo os valores esperados', () => {
-    fail('Teste vazio!');
+  it('Teste se circle retorna undefined, caso o parâmetro passado não seja um número', () => {
+    expect(circle('Robert')).toBeUndefined();
+  });
+  
+  it('Teste se circle retorna um objeto', () => {
+      expect(typeof circle(1)).toBe('object');
+  });
+  
+  it('Teste se o objeto retornado possui 3 propriedades', () => {
+    let objectLength = circle(1);
+    expect(Object.keys(objectLength).length).toEqual(3);
+  });
+
+  it(' Teste se a função, quando não recebe nenhum parâmetro, retorna undefined', () => {
+    expect(circle()).toBeUndefined();
+  });
+
+  it('Teste se dentro do objeto retornado, a função retorna uma `key` com `value` igual à circunferência correta para um círculo de raio 2', () => {
+    let objectLength = circle(2);
+    expect(Object.entries(objectLength)[2]).toEqual(['circumference', 12.56]);
+  });
+
+  it('Teste se dentro do objeto retornado, a função retorna uma `key` com `value` igual à área correta para um círculo de raio 3', () => {
+    let objectLength = circle(3);
+    expect(Object.entries(objectLength)[1]).toEqual(['area', 28.259999999999998]);
+  });
+
+  it('Teste se a função retorna, em um objeto, os dados corretos de um círculo de raio 3', () => {
+    expect(circle(0.6)).toEqual({radius: 0.6, area: 1.1303999999999998, circumference: 3.768});
+  });
+    //expect(circle(0.6)).toEqual({radius: 0.6, area: 1.1304, circumference: 3.768});
     // ESCREVA SEUS TESTES ABAIXO:
     // Teste se circle retorna undefined, caso o parâmetro passado não seja um número.
     // Teste se circle retorna um objeto.
@@ -32,5 +61,4 @@ describe('4 - Implemente os casos de teste para a função `circle`', () => {
     // Teste se dentro do objeto retornado, a função retorna uma `key` com `value` igual à circunferência correta para um círculo de raio 2.
     // Teste se dentro do objeto retornado, a função retorna uma `key` com `value` igual à área correta para um círculo de raio 3.
     // Teste se a função retorna, em um objeto, os dados corretos de um círculo de raio 3.
-  });
 });

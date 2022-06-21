@@ -96,6 +96,7 @@
 const createMenu = (obj) => {
   const res = {
     fetchMenu: () => obj,
+    consumption: {},
   };
   return res;
 };

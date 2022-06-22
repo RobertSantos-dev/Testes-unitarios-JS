@@ -94,12 +94,43 @@
 // DICA: para isso, você precisará percorrer tanto o objeto da chave `food` quanto o objeto da chave `drink`.
 
 let createMenu = (obj) => {
+  let menu1 = [Object.keys(obj.food)[0], Object.values(obj.food)[0]];
+  let menu2 = [Object.keys(obj.food)[1], Object.values(obj.food)[1]];
+  let menu3 = [Object.keys(obj.drink)[0], Object.values(obj.drink)[0]];
+  let menu4 = [Object.keys(obj.drink)[1], Object.values(obj.drink)[1]];
   let a = {};
+  let soma = 0;
   const res = {
     fetchMenu: () => obj,
-    order: (s) => { a.order1 = [s]; },
+    order: (s) => { 
+      if (!a.order1) {
+        a.order1 = [s];
+      } else {
+        a.order1.push(s);  
+    }
+  },
     consumption: a,
-  };
+    pay: () => {
+    for (let i of res.consumption.order1) {
+      switch (i) {
+        case menu1[0]:   
+          soma += menu1[1];
+          break;
+        case menu2[0]:
+          soma += menu2[1];
+        break;
+        case menu3[0]:
+          soma += menu3[1];
+          break;
+        default:
+          soma += menu4[1];
+          break;
+      }
+    }
+    soma += soma * (10 / 100);
+    return soma;
+  },
+};
   return res;
 };
 

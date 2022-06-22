@@ -86,11 +86,11 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // TESTE 5: Verifique se, ao chamar uma função associada à chave `order` no objeto retornado,
     // passando uma string como parâmetro (como `objetoRetornado.order('coxinha')`), tal string é adicionada
     // ao array retornado em `objetoRetornado.consumption`.
-    objetoRetornado.order('coxinha');
-    expect(objetoRetornado.consumption.order1).toEqual(['coxinha']);
     // const objetoRetornado = createMenu(objetoQualquer);
     // objetoRetornado.order("coxinha");
     // objetoRetornado.consumption // Retorno: ["coxinha"]
+    objetoRetornado.order('coxinha');
+    expect(objetoRetornado.consumption.order1).toEqual(['coxinha']);
     // ```
 
     // Agora faça o PASSO 3 no arquivo `src/restaurant.js`.
@@ -103,6 +103,12 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.order("sopa");
     // objetoRetornado.order("sashimi");
     // objetoRetornado.consumption // Retorno: ["coxinha", "agua", "sopa", "sashimi"]
+    objetoRetornado.consumption.order1.pop();
+    objetoRetornado.order("coxinha");
+    objetoRetornado.order("agua");
+    objetoRetornado.order("sopa");
+    objetoRetornado.order("sashimi");
+    expect(objetoRetornado.consumption.order1).toEqual(["coxinha", "agua", "sopa", "sashimi"]);
     // ```
 
     // Agora faça o TESTE 7 deste arquivo.
@@ -114,6 +120,11 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.order('agua');
     // objetoRetornado.order('coxinha');
     // objetoRetornado.consumption // Retorno: ['coxinha', 'agua', 'coxinha']
+    objetoRetornado.consumption.order1 = [];
+    objetoRetornado.order('coxinha');
+    objetoRetornado.order('agua');
+    objetoRetornado.order('coxinha');
+    expect(objetoRetornado.consumption.order1).toEqual(['coxinha', 'agua', 'coxinha']);
     // ```
 
     // Agora faça o TESTE 8 deste arquivo.
@@ -125,8 +136,12 @@ describe('10 - Implemente os casos de teste e a função `createMenu`', () => {
     // objetoRetornado.order('agua');
     // objetoRetornado.order('coxinha');
     // objetoRetornado.pay() // Retorno: somaDosPreçosDosPedidos
-    // ```
-  
+    objetoRetornado.consumption.order1 = [];
+    objetoRetornado.order('coxinha');
+    objetoRetornado.order('agua');
+    objetoRetornado.order('coxinha');
+    expect(objetoRetornado.pay()).toEqual(12.87);
+
     // Agora faça o PASSO 4 no arquivo `src/restaurant.js`.
   });
 });
